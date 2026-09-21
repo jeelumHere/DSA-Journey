@@ -1,13 +1,11 @@
 #include <iostream>
 using namespace std;
 
-int binarySearch(int arr[],int size,int value)
+int binarySearch(int arr[], int size, int value)
 {
     int s = 0;
-    int e = size;
-    // here is how binary search is working
-    // [1,2,3,4,5,6,7,8,9,10]
-    // 
+    int e = size - 1;
+
     while (s <= e)
     {
         int mid = (s + e) / 2;
@@ -16,12 +14,10 @@ int binarySearch(int arr[],int size,int value)
         {
             return mid;
         }
-
         else if (arr[mid] > value)
         {
-            s = mid - 1;
+            e = mid - 1;
         }
-
         else
         {
             s = mid + 1;
