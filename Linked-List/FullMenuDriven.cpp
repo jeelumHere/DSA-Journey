@@ -255,90 +255,115 @@ public:
         temp->next = newNode;          // add address of newNode to it's previous node
         return;
     }
-};
-    int main()
+
+    void updateNode(int key, int val)
     {
-        int val;
-        LinkedList List01;
-
-        int afterNode;
-        int beforeNode;
-        int node;
-        do
+        Node *temp = head;
+        while (temp != NULL && temp->data != key)
         {
-            cout << "\nPress 1 to insert at front in linked List" << endl;
-            cout << "Press 2 to insert at bottom in linked List" << endl;
-            cout << "Press 3 to delete at front in linked List" << endl;
-            cout << "Press 4 to delete at back in linked List" << endl;
-            cout << "Press 5 to delete Specific node" << endl;
-            cout << "Press 6 to display linked list" << endl;
-            cout << "Press 7 to search a node" << endl;
-            cout << "Press 8 to count nodes" << endl;
-            cout << "Press 9 to insert after node" << endl;
-            cout << "Press 10 to insert before node" << endl;
-            int ch;
-            cout << "Enter Choice: ";
-            cin >> ch;
-            switch (ch)
-            {
-            case 1:
-                cout << "Enter value to insert at front: ";
-                cin >> val;
-                List01.insertFront(val);
-                break;
+            temp = temp->next;
+        }
 
-            case 2:
-                cout << "Enter value to insert at back: ";
-                cin >> val;
-                List01.insertBack(val);
-                break;
+        if (temp == NULL)
+        {
+            cout << "No Node has matched the data provided by the user" << endl;
+            return;
+        }
 
-            case 3:
-                List01.deleteFront();
-                break;
-
-            case 4:
-                List01.deleteBack();
-                break;
-
-            case 5:
-                int key;
-                cout << "Enter data of the node youwantto delete: ";
-                cin >> key;
-                List01.deleteSpecificNode(key);
-                break;
-
-            case 6:
-                List01.displayList();
-                break;
-
-            case 7:
-                int sNode;
-                cout << "Enter nodes data you want to search: ";
-                cin >> sNode;
-                List01.searchNode(sNode);
-                break;
-
-            case 8:
-                List01.countNodes();
-                break;
-            case 9:
-                cout << "Enter the node data where you want the new node to come after: ";
-                cin >> afterNode;
-                cout << "Enter the node data : ";
-                cin >> node;
-                List01.insertAfterNode(afterNode, node);
-                break;
-            case 10:
-                cout << "Enter the node data where you want the new node to come before: ";
-                cin >> beforeNode;
-                cout << "Enter the node data : ";
-                cin >> node;
-                List01.insertBeforeNode(beforeNode,node);
-                break;
-            default:
-                cout << "Invalid choice";
-            }
-        } 
-        while (true);
+        temp->data = val;
+        cout << "Data Updated successfully to " << val << endl;
     }
+};
+int main()
+{
+    int val;
+    LinkedList List01;
+
+    int afterNode;
+    int beforeNode;
+    int node;
+    do
+    {
+        cout << "\nPress 1 to insert at front in linked List" << endl;
+        cout << "Press 2 to insert at bottom in linked List" << endl;
+        cout << "Press 3 to delete at front in linked List" << endl;
+        cout << "Press 4 to delete at back in linked List" << endl;
+        cout << "Press 5 to delete Specific node" << endl;
+        cout << "Press 6 to display linked list" << endl;
+        cout << "Press 7 to search a node" << endl;
+        cout << "Press 8 to count nodes" << endl;
+        cout << "Press 9 to insert after node" << endl;
+        cout << "Press 10 to insert before node" << endl;
+        cout << "Press 11 to update node" << endl;
+        int ch;
+        cout << "Enter Choice: ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            cout << "Enter value to insert at front: ";
+            cin >> val;
+            List01.insertFront(val);
+            break;
+
+        case 2:
+            cout << "Enter value to insert at back: ";
+            cin >> val;
+            List01.insertBack(val);
+            break;
+
+        case 3:
+            List01.deleteFront();
+            break;
+
+        case 4:
+            List01.deleteBack();
+            break;
+
+        case 5:
+            int key;
+            cout << "Enter data of the node youwantto delete: ";
+            cin >> key;
+            List01.deleteSpecificNode(key);
+            break;
+
+        case 6:
+            List01.displayList();
+            break;
+
+        case 7:
+            int sNode;
+            cout << "Enter nodes data you want to search: ";
+            cin >> sNode;
+            List01.searchNode(sNode);
+            break;
+
+        case 8:
+            List01.countNodes();
+            break;
+        case 9:
+            cout << "Enter the node data where you want the new node to come after: ";
+            cin >> afterNode;
+            cout << "Enter the node data : ";
+            cin >> node;
+            List01.insertAfterNode(afterNode, node);
+            break;
+        case 10:
+            cout << "Enter the node data where you want the new node to come before: ";
+            cin >> beforeNode;
+            cout << "Enter the node data : ";
+            cin >> node;
+            List01.insertBeforeNode(beforeNode, node);
+            break;
+        case 11:
+            cout << "Enter the node data that you want to update: ";
+            cin >> beforeNode;
+            cout << "Enter the new node data : ";
+            cin >> node;
+            List01.updateNode(beforeNode, node);
+            break;
+        default:
+            cout << "Invalid choice";
+        }
+    } while (true);
+}
