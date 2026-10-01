@@ -198,33 +198,28 @@ public:
             cout << "The linked list is empty" << endl;
             return;
         }
-
         // Case 1: Key is at the tail, reuse insertBack to maintain tail pointer
         if (tail->data == key)
         {
             insertBack(val);
             return;
         }
-
         // Case 2: Search for the key safely
         Node *temp = head;
         while (temp != NULL && temp->data != key)
         {
             temp = temp->next;
         }
-
         // If we reached the end and didn't find the key
         if (temp == NULL)
         {
             cout << "Invalid data.\nEnter correct nodes data to insert right after that node" << endl;
             return;
         }
-
         // Case 3: Insert the new node right after temp
         Node *newNode = new Node(val);
         newNode->next = temp->next; // Point new node to temp's next node
         temp->next = newNode;       // Link temp to the new node
-
         cout << "Inserted Successfully" << endl;
     }
 
@@ -278,7 +273,6 @@ int main()
 {
     int val;
     LinkedList List01;
-
     int afterNode;
     int beforeNode;
     int node;
