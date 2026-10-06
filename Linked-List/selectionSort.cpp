@@ -2,8 +2,7 @@
 using namespace std;
 
 class Node{
-    public: 
-
+    public : 
     int data;
     Node* next;
 
@@ -13,10 +12,15 @@ class Node{
     }
 };
 
-Node* head = NULL;
-Node* tail = NULL;
+class LinkedList{
+    Node *head ,*tail;
+    public : 
+    LinkedList(){
+        head = tail = NULL;
+    }
 
-void insert_front(){
+
+    void insert_front(){
     cout<<"Enter value you want to insert : ";
     int val;cin>>val;
     Node* newNode = new Node(val);
@@ -31,7 +35,7 @@ void insert_front(){
     return;
 }
 
-void print_list(){
+    void print_list(){
     if(head==NULL){
         cout<<"No nodes are present in linked list"<<endl;
     }
@@ -45,87 +49,50 @@ void print_list(){
     return;
 }
 
-void ascend_data(bool swapped){
-     do
-    {
-        swapped = false;
-
-        Node *curr = head;
-
-        while(curr->next != NULL)
-        {
-            if(curr->data > curr->next->data)
-            {
-                int tempData = curr->data;
-                curr->data = curr->next->data;
-                curr->next->data = tempData;
-
-                swapped = true;
+    void selection_sort(){
+        if(head==NULL){
+            cout<<"No nodes are present in the list"<<endl;
+            return;
+        }
+        
+        Node* curr = head;
+        while(curr!=NULL){
+            Node* temp = curr->next;
+            Node *minNode = curr;
+            while(temp!=NULL){
+                if(minNode->data > temp->data){
+                    minNode = temp;
+                }
+                temp = temp->next;
             }
 
-            curr = curr->next;
+            // swapping 
+            int tempData = curr->data;
+            curr->data = minNode->data;
+            minNode->data = tempData;
+            curr = curr->next; 
         }
-
-    } while(swapped);
-}
-
-void descend_data(bool swapped){
-     do
-    {
-        swapped = false;
-
-        Node *curr = head;
-
-        while(curr->next != NULL)
-        {
-            if(curr->data < curr->next->data)
-            {
-                int tempData = curr->data;
-                curr->data = curr->next->data;
-                curr->next->data = tempData;
-
-                swapped = true;
-            }
-
-            curr = curr->next;
-        }
-
-    } while(swapped);
-}
-
-void bubble_sort(){
-    if(head == NULL){
-        cout<<"No nodes are present in the list"<<endl;
-        return;
     }
-    else{
-        bool swapped;
-        cout<<"Press 1 for small to big (ascending sorting)"<<endl;
-        cout<<"Press 2 for big to small (descending sorting)"<<endl;
-        cout<<"Enter Choice: ";
-        int choice; cin>>choice;
-        if(choice==1) ascend_data(swapped);
-        else if(choice==2) descend_data(swapped);
-        else return;
-    }
-}
- 
+
+};
+
 int main(){
-    while(true){
-        cout<<"\nEnter 1 to insert data"<<endl;
-        cout<<"Enter 2 to see list"<<endl;
-        cout<<"Enter 3 to sort linked list"<<endl;
-        int ch;
-        cout<<"Enter choice: ";
-        cin>>ch;
+    LinkedList ll;
+    do{
+        cout<<"Press 1 to insert node"<<endl;
+        cout<<"Press 2 to see list"<<endl;
+        cout<<"Press 3 to sort list"<<endl;
+        cout<<"Enter Choice: ";
+        int ch; cin>>ch;
         switch(ch){
-            case 1:insert_front(); break;
+            case 1: ll.insert_front(); break;
             
-            case 2:print_list(); break;
+            case 2: ll.print_list(); break;
+            
+            case 3: ll.selection_sort(); break;
 
-            case 3:bubble_sort(); break;
-
-            default:  cout<<"Inavlid Choice"<<endl;
+            default:cout<<"Invalid Choice"<<endl;
         }
     }
+    while(true);
 }
