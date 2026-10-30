@@ -40,6 +40,7 @@ class LinkedList{
     void insert_back(){
         cout<<"Enter Node's data: ";
         int val; cin>>val;
+        Node* newNode = new Node(val);
         if(head==NULL || tail==NULL){
             head = tail = newNode;
         }
@@ -98,7 +99,33 @@ class LinkedList{
         cout<<endl;
     }
 
+    void selection_sort(){
+        if(head==NULL || tail==NULL)
+        {
+            cout<<"No Node's are present"<<endl;
+            return;
+        }
+        Node* curr = head;
+        while(curr!=NULL){
+            Node* temp = curr->next;
+            Node* minNode = curr;
+            while(temp!=NULL){
+                if(temp->data<minNode->data){
+                    minNode = temp;
+                }
+                temp = temp->next;
+            }
 
+            // swapping
+            int tempData = curr->data;
+            curr->data = minNode->data;
+            minNode->data = tempData;
+
+            curr = curr->next;
+        }
+    }
+
+    
 };
 
 int main(){
@@ -108,6 +135,7 @@ int main(){
         cout<<"Press 2 to print list"<<endl;
         cout<<"Press 3 to print reverse list"<<endl;
         cout<<"Press 4 to print delete all list"<<endl;
+        cout<<"Press 5 to sort the list"<<endl;
         cout<<"Enter Choice: ";
         int ch; cin>>ch;
         switch(ch){
@@ -119,6 +147,8 @@ int main(){
             case 3: ll.print_reverse();
             break;
             case 4: ll.delete_all();
+            break;
+            case 5: ll.selection_sort();
             break;
             default: cout<<"Invalid CHoice"<<endl;
         }
